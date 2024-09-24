@@ -14,14 +14,10 @@ class BanWorldValidator extends ConstraintValidator
         if (null === $value || '' === $value) {
             return;
         }
-        $value = strtolower($value);
-        foreach ($constraint -> banWorlds as $banWorld){
-            if (str_contains($value, $banWorld)){
-                $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ value }}', $value)
-                ->addViolation();
-            }
-        }
 
+        // TODO: implement the validation here
+        $this->context->buildViolation($constraint->message)
+            ->setParameter('{{ value }}', $value)
+            ->addViolation();
     }
 }
