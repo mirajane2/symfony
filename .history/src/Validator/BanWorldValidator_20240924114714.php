@@ -4,7 +4,6 @@ namespace App\Validator;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use App\Validator\BanWorld;
 
 class BanWorldValidator extends ConstraintValidator
 {
@@ -16,13 +15,13 @@ class BanWorldValidator extends ConstraintValidator
             return;
         }
         $value = strtolower($value);
-        foreach ($constraint-> banWords as $banWorld){
+        foreach ($constraint -> banWorld as $banWorld){
             if (str_contains($value, $banWorld)){
                 $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ banWorld }}', $banWorld)
+                ->setParameter('{{ banworld }}', $banWorld)
                 ->addViolation();
             }
         }
 
-    } 
+    }
 }

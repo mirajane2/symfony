@@ -10,7 +10,7 @@ class BanWorld extends Constraint
 {
     public function __construct(
         public string $message = 'This contains a banned world {{ banWorld }}.',
-        public array $banWords = ['spam' , 'viagra'],
+        public array $banWors = ['spam' , 'viagra'],
         ?array $groups = null,
         mixed $payload =  null )
     {

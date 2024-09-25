@@ -9,8 +9,8 @@ use Symfony\Component\Validator\Constraint;
 class BanWorld extends Constraint
 {
     public function __construct(
-        public string $message = 'This contains a banned world {{ banWorld }}.',
-        public array $banWords = ['spam' , 'viagra'],
+        string $message = 'This contains a banned world {{ banWorld }}.',
+        array $banWords = ['spam' , 'viagra'],
         ?array $groups = null,
         mixed $payload =  null )
     {

@@ -16,10 +16,10 @@ class BanWorldValidator extends ConstraintValidator
             return;
         }
         $value = strtolower($value);
-        foreach ($constraint-> banWords as $banWorld){
+        foreach ($constraint->banWorlds as $banWorld){
             if (str_contains($value, $banWorld)){
                 $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ banWorld }}', $banWorld)
+                ->setParameter('{{ banworld }}', $banWorld)
                 ->addViolation();
             }
         }
