@@ -4,20 +4,25 @@ namespace App\Validator;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use App\Validator\BanWorld;
 
 class BanWorldValidator extends ConstraintValidator
 {
-    public function validate(mixed $value, Constraint $constraint): void
+    public function validate($value, Constraint $constraint)
     {
         /* @var BanWorld $constraint */
 
         if (null === $value || '' === $value) {
             return;
         }
+        $value = strtolower($value);
+        foreach ($constraint-> banWords as $banWorld){
+            if (str_contains($value, $banWorld)){
+                $this->context->buildViolation($constraint->message)
+                ->setParameter('{{ banWorld }}', $banWorld)
+                ->addViolation();
+            }
+        }
 
-        // TODO: implement the validation here
-        $this->context->buildViolation($constraint->message)
-            ->setParameter('{{ value }}', $value)
-            ->addViolation();
-    }
+    } 
 }

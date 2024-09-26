@@ -8,10 +8,12 @@ use Symfony\Component\Validator\Constraint;
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
 class BanWorld extends Constraint
 {
-    public function _construct(
-        string $message = 'The value "{{ value }}" is not valid.',
-        array $banWorlds = ['spam' , 'viagra']) 
+    public function __construct(
+        public string $message = 'This contains a banned world {{ banWorld }}.',
+        public array $banWords = ['spam' , 'viagra'],
+        ?array $groups = null,
+        mixed $payload =  null )
     {
-
+        parent:: __construct( null, $groups, $payload );
     }   
 }
