@@ -10,7 +10,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\Regex;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Category;
 use Symfony\Component\Validator\Constraints\Sequentially;
 
@@ -25,10 +24,9 @@ class RecipeType extends AbstractType
                 'required'=> false,
          
             ])
-            ->add('category', EntityType::class, [
+            ->add('categorie', EntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'name',
-                'expanded' => true,
+                'choice_label' => 'name'
             ])
             ->add('content')
             ->add('duration')

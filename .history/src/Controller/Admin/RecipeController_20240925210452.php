@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\RecipeRepository;
-use App\Repository\CategoryRepository;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,12 +17,8 @@ use Symfony\Component\Routing\Requirement\Requirement;
 class RecipeController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(Request $request, RecipeRepository $repository, CategoryRepository $categoryRepository, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, RecipeRepository $repository): Response
     {
-        $platPrincipal = $categoryRepository -> findOneBy(['slug' => 'plat-principal']);
-        $pates = $repository -> findOneBy(['slug' => 'pates-bolognaise']);
-        $pates -> setCategory($platPrincipal);
-        $entityManager -> flush();
         $recipes = $repository -> findWithDurationLowerThan(100);
         return $this -> render('admin/recipe/index.html.twig', [
             'recipes' => $recipes

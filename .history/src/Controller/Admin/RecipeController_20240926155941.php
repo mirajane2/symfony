@@ -23,7 +23,6 @@ class RecipeController extends AbstractController
         $platPrincipal = $categoryRepository -> findOneBy(['slug' => 'plat-principal']);
         $pates = $repository -> findOneBy(['slug' => 'pates-bolognaise']);
         $pates -> setCategory($platPrincipal);
-        $entityManager -> flush();
         $recipes = $repository -> findWithDurationLowerThan(100);
         return $this -> render('admin/recipe/index.html.twig', [
             'recipes' => $recipes
